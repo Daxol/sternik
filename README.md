@@ -1,3 +1,3 @@
-# sternik-weekend
+# Project "Sternik"
 
-## Aplikacja skoleniowa grupa weekendowa
+## Application for bootcamp 

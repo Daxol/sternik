@@ -25,4 +25,5 @@ public class SpringWebApplicationInitializer extends AbstractAnnotationConfigDis
         return new String[]{"/"};
     }
 
+
 }

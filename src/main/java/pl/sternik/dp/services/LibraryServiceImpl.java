@@ -31,8 +31,10 @@ public class LibraryServiceImpl implements LibraryService {
         for (int i = allBooks.size(); i > allBooks.size() - 3; i--) {
             books.add(allBooks.get(i));
         }
+
         return books;
     }
+
 
     @Override
     public Optional<Book> findById(Long id) {
@@ -78,7 +80,8 @@ public class LibraryServiceImpl implements LibraryService {
 
     @Override
     public List<Book> findAllToSell() {
-        return books.findAll().stream().filter(p -> Objects.equals(p.getStatus(), Status.FOR_SALE))
+        return books.findAll().stream()
+                .filter(p -> Objects.equals(p.getStatus(), Status.FOR_SALE))
                 .collect(Collectors.toList());
     }
 

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="th/layout ::site-head">
+    <title>Magazyn książek</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" media="all" href="../../css/klaser.css" th:href="@{/css/klaser.css}"/>
+</head>
+
+<body>
+<div class="klas">
+    <header th:replace="th/layout :: site-header"/>
+
+    <div class="d-flex justify-content-center">
+        <form action="#" class="form-group"
+        th:action="@{/book}"
+        th:object="${book}" method="post">
+
+            <fieldset>
+
+                <legend th:text="#{klaser.book.dane}">Starter Data</legend>
+
+                <ul th:if="${#fields.hasErrors('*')}" class="errorlist">
+                    <li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input is incorrect</li>
+                </ul>
+
+                <div class="form-control">
+                    <label> <span th:text="#{klaser.description}">description</span>
+                    </label> <input class="form-control text" type="text" th:field="*{description}"
+                                    th:errorclass="fieldError"/>
+                </div>
+                <div class="form-control">
+                    <label> <span th:text="#{klaser.author}">author</span>
+                    </label> <input class="form-control text" th:field="*{author}" th:errorclass="fieldError"/>
+                </div>
+                <div class="form-control">
+                    <label> <span th:text="#{klaser.price}">price</span>
+                    </label> <input class="form-control text" type="text" th:field="*{price}"
+                                    th:errorclass="fieldError"/>
+                </div>
+                <div class="form-control text">
+                    <label> <span th:text="#{klaser.title}">title</span>
+                    </label> <input class="form-control text" type="text" th:field="*{title}"
+                                    th:errorclass="fieldError"/>
+                </div>
+                <div class="form-control ">
+                    <label> <span th:text="#{klaser.status}">status</span></label>
+                    <select th:field="*{status}" th:errorclass="fieldError">
+                        <option th:each="st : ${statusyAll}" th:value="${st}" th:text="#{'klaser.status.' + ${st}}">NEW
+                        </option>
+                    </select>
+                </div>
+                <div class="submit">
+                    <button th:if="*{id}" type="submit" name="save" th:value="*{id}">Zapisz</button>
+
+
+                    <button th:unless="*{id}" type="submit" name="create">Zapisz.</button>
+
+
+                    <!--<a href="klaser.html" th:href="@{/book}">-->
+                    <!--<button type="button">Cancel</button>-->
+                    <!--</a>-->
+                </div>
+
+            </fieldset>
+
+        </form>
+
+    </div>
+    <footer th:replace="th/layout :: site-footer"/>
+</div>
+</body>
+</html>

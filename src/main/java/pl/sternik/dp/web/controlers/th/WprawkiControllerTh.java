@@ -44,7 +44,7 @@ public class WprawkiControllerTh {
         return "Uzywasz przegladarki:=" + cosParam;
     }
 //
-//    @GetMapping(value = "/wprawki-th/monety/{id}/json", produces = "application/json")
+//    @GetMapping(value = "/wprawki-th/book/{id}/json", produces = "application/json")
 //    @ResponseBody
 //    public ResponseEntity<Book> viewAsJson(@PathVariable("id") Long id, final ModelMap model) {
 //

@@ -1,20 +1,57 @@
 <!DOCTYPE html>
+
 <html xmlns:th="http://www.thymeleaf.org">
 
+
 <head th:replace="th/layout ::site-head">
-<title>Title</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Magazyn książek</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <link rel="stylesheet" type="text/css" media="all" href="../../css/klaser.css" th:href="@{/css/klaser.css}"/>
 </head>
 
 <body>
+<div class="klas">
+  <header th:replace="th/layout :: site-header"/>
+  <div>
+    <!--<h2 th:text="${title.list}" style="display: inline;">Lista monet</h2>-->
+    <h2 th:value="#{title.list}" style="display: inline;">Lista książek</h2>
+    <!--<h2 th:text="${title.list}" style="display: inline;">Lista monet</h2>s-->
+  </div>
+  <div  th:unless="${#lists.isEmpty(toSell)}">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th data-th-text="#{klaser.id}">id</th>
+        <th th:text="#{klaser.description}">description</th>
+        <th th:text="#{klaser.author}">author</th>
+        <th th:text="#{klaser.price}">price</th>
+        <th th:text="#{klaser.title}">title</th>
+        <th th:text="#{klaser.status}">status</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="coin : ${toSell}">
+        <form action="#"  th:object="${coin}" method="post">
+          <td th:text="${coin.id}">1</td>
+          <td th:text="${coin.description}">Długi description</td>
+          <td th:text="${coin.author}">zł</td>
+          <td th:text="${coin.price}">5.12</td>
+          <td th:text="${coin.title}">Polska</td>
+          <td th:text="#{${'klaser.status.' + coin.status}}">NEW</td>
+          <td>
+            <button type="submit" name="remove" th:value="${coin.id}"
+                    th:text="#{klaser.remove}"></button>
 
-  <header th:replace="th/layout :: site-header" />
-
-  <h1>Do sprzedania!</h1>
-  <p>tu bedzie</p>
-
-  <footer th:replace="th/layout :: site-footer" />
-
+            <a href="book.html" th:href="@{|/book/${coin.id}|}">
+              <button type="button" th:text="#{klaser.edit}">Editt</button>
+            </a>
+          </td>
+        </form>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <footer th:replace="th/layout :: site-footer"/>
+</div>
 </body>
-
 </html>

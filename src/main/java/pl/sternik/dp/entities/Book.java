@@ -1,21 +1,31 @@
 package pl.sternik.dp.entities;
 
-import javax.persistence.Entity;
+import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.math.BigDecimal;
 
 @XmlRootElement
-@Entity
 public class Book {
 
     private Long id;
+
     public Book() {
     }
 
+    @NotNull
     private String description;
+
+    @NotEmpty
     private String author;
+
+    @NotNull
     private BigDecimal price;
+
+    @NotNull
     private String title;
+
     private Status status;
 
     public Long getId() {

@@ -3,7 +3,7 @@ spring:
     url: postgres://ucaprxdqafqjxx:8e22b7f0e92d20822ee5fd41d778ddca582e6350d75caa7c953a115c93f42ec0@ec2-174-129-206-173.compute-1.amazonaws.com:5432/dkapmhulqknri
     username: ucaprxdqafqjxx
     password: 8e22b7f0e92d20822ee5fd41d778ddca582e6350d75caa7c953a115c93f42ec0
-    driver-class-name: org.postgresql.Driver
+#    driver-class-name: org.postgresql.Driver
 
 logging.level.org.springframework.web: ERROR
 logging.level.org.hibernate: ERROR

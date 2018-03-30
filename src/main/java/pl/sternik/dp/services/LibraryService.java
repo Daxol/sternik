@@ -1,6 +1,7 @@
 package pl.sternik.dp.services;
 
 import pl.sternik.dp.entities.Book;
+import pl.sternik.dp.entities.Status;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,4 +22,5 @@ public interface LibraryService {
     Optional<Boolean> deleteById(Long id);
 
     List<Book> findLatest3();
+
 }
