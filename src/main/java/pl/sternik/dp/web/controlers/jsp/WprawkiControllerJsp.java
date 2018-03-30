@@ -1,26 +1,25 @@
 package pl.sternik.dp.web.controlers.jsp;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.Date;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.*;
-import pl.sternik.dp.entities.Moneta;
-import pl.sternik.dp.repositories.MYMoneRespo;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.Date;
 
 
 @Controller
 public class WprawkiControllerJsp {
 
-    @Autowired
-    private MYMoneRespo repo;
 
     @RequestMapping(path = "/wprawki-jsp", method = RequestMethod.GET)
     public String wprawki(ModelMap model) {
-        Moneta moneta = new Moneta();
-        moneta.setKrajPochodzenia("PL");
-        repo.save(moneta);
         model.put("msg", "Wartosc z modelu");
         model.addAttribute("data", new Date());
         return "jsp/wprawki";

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org ">
 
 <head th:replace="th/layout ::site-head">
 <title>Klaser monet</title>
@@ -11,41 +12,38 @@
 <body>
   <header th:replace="th/layout :: site-header" />
   <div>
-    <h2 th:text="#{title.list}" style="display: inline;">Lista monet</h2>
+    <!--<h2 th:text="${title.list}" style="display: inline;">Lista monet</h2>-->
+    <h2 th:value="#{title.list}" style="display: inline;">Lista monet</h2>
+    <!--<h2 th:text="${title.list}" style="display: inline;">Lista monet</h2>s-->
   </div>
-  
-  <div class="listaMonet" th:unless="${#lists.isEmpty(coinsAll)}">
-    <table>
+
+  <div class="listaMonet" th:unless="${#lists.isEmpty(allBooks)}">
+    <table  class="table table-striped">
       <thead>
         <tr>
-          <th th:text="#{klaser.numerKatalogowy}">numerKatalogowy</th>
-          <th th:text="#{klaser.nominal}">nominal</th>
-          <th th:text="#{klaser.opis}">opis</th>
-          <th th:text="#{klaser.waluta}">waluta</th>
-          <th th:text="#{klaser.cenaNabycia}">cenaNabycia</th>
-          <th th:text="#{klaser.dataNabycia}">dataNabycia</th>
-          <th th:text="#{klaser.krajPochodzenia}">krajPochodzenia</th>
-          <th th:text="#{klaser.status}">status</th>
-          <th th:text="#{klaser.operacje}">operacje</th>
+          <th th:value="#{klaser.id}">id</th>
+          <th th:value="#{klaser.description}">description</th>
+          <th th:value="#{klaser.author}">author</th>
+          <th th:value="#{klaser.price}">price</th>
+          <th th:value="#{klaser.title}">title</th>
+          <th th:value="#{klaser.status}">status</th>
         </tr>
       </thead>
       <tbody>
-        <tr th:each="coin : ${coinsAll}">
+        <tr th:each="coin : ${allBooks}">
           <form action="#" th:action="@{/monety}" th:object="${coin}" method="post">
-          <td th:text="${coin.numerKatalogowy}">1</td>
-          <td th:text="${coin.nominal}">100</td>
-          <td th:text="${coin.opis}">Długi opis</td>
-          <td th:text="${coin.waluta}">zł</td>
-          <td th:text="${{coin.cenaNabycia}}">5.12</td>
-          <td th:text="${{coin.dataNabycia}}">2011/13/01</td>
-          <td th:text="${coin.krajPochodzenia}">Polska</td>
-          <td th:text="#{${'klaser.status.' + coin.status}}">Nowa</td>
+          <td th:text="${coin.id}">1</td>
+          <td th:text="${coin.description}">Długi description</td>
+          <td th:text="${coin.author}">zł</td>
+          <td th:text="${{coin.price}}">5.12</td>
+          <td th:text="${coin.title}">Polska</td>
+          <td th:text="#{${'klaser.status.' + coin.status}}">NEW</td>
           <td>
-            <button type="submit" name="remove" th:value="${coin.numerKatalogowy}" 
-            th:text="#{klaser.remove}">Dell</button>
-            
-            <a href="moneta.html" th:href="@{|/monety/${coin.numerKatalogowy}|}" >
-            <button type="button" th:text="#{klaser.edit}">Editt</button></a>              
+            <button type="submit" name="remove" th:value="${coin.id}"
+            th:text="#{klaser.remove}"> </button>
+
+            <a href="moneta.html" th:href="@{|/monety/${coin.id}|}" >
+            <button type="button" th:text="#{klaser.edit}">Editt</button></a>
           </td>
           </form>
         </tr>

@@ -1,24 +1,17 @@
 package pl.sternik.dp.web.controlers.th;
 
-import java.util.Arrays;
-import java.util.Calendar;
 import java.util.List;
-import java.util.Optional;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import pl.sternik.dp.entities.Moneta;
-import pl.sternik.dp.services.KlaserService;
+import pl.sternik.dp.entities.Book;
+import pl.sternik.dp.services.LibraryService;
 import pl.sternik.dp.services.NotificationService;
 
 
@@ -26,10 +19,7 @@ import pl.sternik.dp.services.NotificationService;
 public class KlaserController {
 
     @Autowired
-//    @Qualifier("spring-data")
-    @Qualifier("tablica")
-//    @Qualifier("lista")
-    private KlaserService klaserService;
+    private LibraryService libraryService;
 
     @Autowired
     private NotificationService notificationService;
@@ -39,9 +29,9 @@ public class KlaserController {
 //        return Arrays.asList(Status.ALL);
 //    }
 
-    @ModelAttribute("coinsAll")
-    public List<Moneta> populateCoins() {
-        return this.klaserService.findAll();
+    @ModelAttribute("allBooks")
+    public List<Book> populateCoins() {
+        return this.libraryService.findAll();
     }
 
 //    @ModelAttribute("coinsToSell")

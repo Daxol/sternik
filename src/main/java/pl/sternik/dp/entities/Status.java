@@ -3,13 +3,13 @@ package pl.sternik.dp.entities;
 
 public enum Status {
     
-    NOWA("Nowa"), 
-    STARA("Stara"),
-    DO_SPRZEDANIA("Do sprzedania"),
+    NEW("NEW"),
+    OLD("OLD"),
+    FOR_SALE("FOR_SALE"),
     DUBLET("Dublet");
     
     
-    public static final Status[] ALL = { NOWA, DO_SPRZEDANIA, DUBLET };
+    public static final Status[] ALL = { NEW, FOR_SALE, DUBLET };
     
     
     private final String name;
@@ -17,19 +17,7 @@ public enum Status {
     private Status(final String name) {
     	this.name = name;
     }
-    
-//    public static Status forName(final String name) {
-//        if (name == null) {
-//            throw new IllegalArgumentException("Nie mozna nula dla Status");
-//        }
-//        if (name.equalsIgnoreCase("NOWA")) {
-//            return NOWA;
-//        } else if (name.equalsIgnoreCase("DO_SPRZEDANIA")) {
-//            return Status.DO_SPRZEDANIA;
-//        }
-//        throw new IllegalArgumentException("Nazwa \"" + name + "\" nie pasuje do zadengo Statusu");
-//    }
-//    
+
     
     public String getName() {
         return this.name;
