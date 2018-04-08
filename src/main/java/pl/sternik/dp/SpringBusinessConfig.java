@@ -34,12 +34,19 @@ public class SpringBusinessConfig {
 //    }
     @Bean
     public DataSource dataSource() {
+        try {
+            Class.forName("org.postgresql.Driver");
+            System.out.println(" === === DRIVER FOUND === === ");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            System.out.println(" === === DRIVER NOT FOUND === === ");
+        }
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
 
         dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUrl("postgres://ucaprxdqafqjxx:8e22b7f0e92d20822ee5fd41d778ddca582e6350d75caa7c953a115c93f42ec0@ec2-174-129-206-173.compute-1.amazonaws.com:5432/dkapmhulqknri");
-//        dataSource.setUsername("ucaprxdqafqjxx");
-//        dataSource.setPassword("8e22b7f0e92d20822ee5fd41d778ddca582e6350d75caa7c953a115c93f42ec0");
+        dataSource.setUrl("jdbc:postgresql://ec2-174-129-206-173.compute-1.amazonaws.com:5432/dkapmhulqknri?ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory");
+        dataSource.setUsername("ucaprxdqafqjxx");
+        dataSource.setPassword("8e22b7f0e92d20822ee5fd41d778ddca582e6350d75caa7c953a115c93f42ec0");
         return dataSource;
     }
 
