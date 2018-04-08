@@ -8,6 +8,6 @@
     <context:annotation-config/>
 
     <!-- For defining Spring Bean -->
-    <context:component-scan base-package="pl.sternik.dp"/>
+    <!--<context:component-scan base-package="pl.sternik.dp"/>-->
 
 </beans>

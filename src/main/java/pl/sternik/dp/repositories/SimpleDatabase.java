@@ -1,5 +1,6 @@
 package pl.sternik.dp.repositories;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
@@ -10,6 +11,7 @@ import pl.sternik.dp.exceptions.BookAlreadyExistsException;
 import pl.sternik.dp.exceptions.NoSuchBookException;
 
 import javax.annotation.PostConstruct;
+import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.util.LinkedList;
 import java.util.List;
@@ -21,7 +23,8 @@ import java.util.Optional;
 @Scope("singleton")
 public class SimpleDatabase implements BookRepository {
 
-
+    @Autowired
+    CustomRepo customRepo;
     private List<Book> db = new LinkedList<>();
 
     public SimpleDatabase() {
@@ -33,7 +36,7 @@ public class SimpleDatabase implements BookRepository {
 
     @Override
     public Book create(Book book) throws BookAlreadyExistsException {
-
+        customRepo.save(book);
         if (book.getId() == null) {
 
             try {
@@ -91,13 +94,16 @@ public class SimpleDatabase implements BookRepository {
 
 
     @Override
+    @Transactional(Transactional.TxType.REQUIRED)
     public List<Book> findAll() {
-        return db;
+        return customRepo.findAll();
     }
 
     @Override
+    @Transactional(Transactional.TxType.REQUIRED)
     public void initBooks(List<Book> db) {
         System.out.println("INIT @@@@@@@@@@@@@@@@@@@@@@@@@@ OINIT @@@@");
+        customRepo.save(db);
         this.db.addAll(db);
     }
 

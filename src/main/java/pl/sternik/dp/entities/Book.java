@@ -2,13 +2,19 @@ package pl.sternik.dp.entities;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.math.BigDecimal;
 
 @XmlRootElement
+@Entity
 public class Book {
 
+    @Id
+    @GeneratedValue
     private Long id;
 
     public Book() {
